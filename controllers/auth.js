@@ -7,7 +7,7 @@ const {validationResult} = require("express-validator");
 
 //HTTP GET -signUP- to load the signup form  
 exports.auth_signup_get = (req, res) => { 
-    res.render('auth/signup');
+    res.render('auth/signUp');
 }
 
 //HTTP POST -signUP-  post signup data 
@@ -26,18 +26,18 @@ exports.auth_signup_post = (req, res) => {
     .save() 
     .then(()=>{
         
-        res.redirect('/auth/signin');
+        res.redirect('/auth/signIn');
     })
     .catch((err)=> { 
 
         if (err.code == 11000){ 
-            res.redirect("/auth/signin");
+            res.redirect("/auth/signIn");
         }
         else 
         { 
             const errors = validationResult(req); 
             if(!errors.isEmpty()){ 
-                res.redirect("/auth/signup");
+                res.redirect("/auth/signUp");
             }
         }
 
@@ -47,13 +47,13 @@ exports.auth_signup_post = (req, res) => {
 
 //HTTP GET - singIN- to load signin form 
 exports.auth_signin_get = (req, res) => { 
-    res.render("auth/signin");
+    res.render("auth/signIn");
 }
 
 //HTTP POST- singIN- to post data  
 exports.auth_signin_post = 
   passport.authenticate("local", { 
        successRedirect:"/homepage", 
-       failureRedirect: "/auth/signin",
+       failureRedirect: "/auth/signIn",
   })
 

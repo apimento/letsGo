@@ -17,7 +17,7 @@ app.use(expressLayouts);
 
 let session = require("express-session"); 
 
-let passport = require("./help/ppConfig");   
+let passport = require("./helper/ppConfig");   
 
 app.use(session({
     //value kept in .env
