@@ -1,0 +1,19 @@
+<!-- muscle groups will have a forEach function like this 
+
+    DETAIL PAGE 
+<div>
+    Authors: 
+    <% article.author.forEach(function(author) { %> 
+        <hr> 
+    <div > 
+        <div>Author: <%= author.name %> </div> 
+
+        FORM(ADD.EJS)
+                <select name="author[]" multiple="multiple">
+            <%authors.forEach(function(author) { %>
+
+              <option value="<%=author.id%>"> <%= author.name %></option>
+            <% }) %>   
+
+            EXERCISES WILL HAVE TO BE SIMILAR 
+-->

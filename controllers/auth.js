@@ -37,15 +37,10 @@ exports.auth_signup_post = (req, res) => {
         { 
             const errors = validationResult(req); 
             if(!errors.isEmpty()){ 
-                // res.status(400).json({errors:errors.array}); 
                 res.redirect("/auth/signup");
             }
-            // console.log(err);
-            // res.send(err);
         }
 
-        // console.log(err); 
-        // res.send("ERROR!")
     })
 };   
 
