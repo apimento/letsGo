@@ -29,7 +29,7 @@ const workoutSchema = new Schema({
 
 
 
-const Flight = mongoose.model("Flight", flightSchema);    
+const Workout = mongoose.model("Workout", workoutSchema);    
 
 
 module.exports = Flight; 
