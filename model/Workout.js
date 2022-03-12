@@ -11,7 +11,7 @@ const exerciseSchema = new Schema({
     sets: Number, 
     reps: Number, 
     weight: Number, 
-    weightUom: {type: String, enum: ['lbs' , 'kg']}, 
+    weightUom: {type: String, default:'lbs', enum: ['lbs' , 'kg']}, 
     equipmentUsed: String, 
     comments: String
   });
