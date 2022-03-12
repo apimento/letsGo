@@ -6,6 +6,8 @@ require('dotenv').config()
 
 const expressLayouts = require("express-ejs-layouts"); 
 
+const methodOverride = require("method-override");
+
 const PORT = 5555; 
 
 const app = express(); 
@@ -36,9 +38,11 @@ app.use(function(req, res, next){
     next();
 })
 
-//IMPORT ROUTES 
+//IMPORT ROUTES  
+const authRoute = require("./routes/auth");
 
-//MOUNT ROUTES 
+//MOUNT ROUTES  
+app.use('/', authRoute);
 
 app.set("view engine", "ejs");
 

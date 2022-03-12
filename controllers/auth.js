@@ -1,8 +1,8 @@
 //API's for Authentication  
 const User = require('../model/User'); 
-const bcrypt = require('bcrypt');  
+// const bcrypt = require('bcrypt');  
 const passport = require("passport");
-const salt = 10; 
+// const salt = 10; 
 const {validationResult} = require("express-validator");
 
 //HTTP GET -signUP- to load the signup form  
@@ -16,28 +16,27 @@ exports.auth_signup_post = (req, res) => {
 
     let user = new User(req.body) 
     console.log(req.body);
-    let hash = bcrypt.hashSync(req.body.password, salt); 
-    console.log(hash); 
+    // let hash = bcrypt.hashSync(req.body.password, salt); 
+    // console.log(hash); 
 
-    user.password = hash;
+    // user.password = hash;
 
     //Save user 
     user
     .save() 
     .then(()=>{
-        
-        res.redirect('/auth/signIn');
+        res.redirect('auth/signIn');
     })
     .catch((err)=> { 
 
         if (err.code == 11000){ 
-            res.redirect("/auth/signIn");
+            res.redirect("auth/signIn");
         }
         else 
         { 
             const errors = validationResult(req); 
             if(!errors.isEmpty()){ 
-                res.redirect("/auth/signUp");
+                res.redirect("auth/signUp");
             }
         }
 
@@ -54,6 +53,6 @@ exports.auth_signin_get = (req, res) => {
 exports.auth_signin_post = 
   passport.authenticate("local", { 
        successRedirect:"/homepage", 
-       failureRedirect: "/auth/signIn",
+       failureRedirect: "auth/signIn",
   })
 
