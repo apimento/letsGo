@@ -1,8 +1,8 @@
 //API's for Authentication  
 const User = require('../model/User'); 
-// const bcrypt = require('bcrypt');  
+const bcrypt = require('bcrypt');  
 const passport = require("passport");
-// const salt = 10; 
+const salt = 10; 
 const {validationResult} = require("express-validator");
 
 //HTTP GET -signUP- to load the signup form  
@@ -29,12 +29,14 @@ exports.auth_signup_post = (req, res) => {
     })
     .catch((err)=> { 
 
-        if (err.code == 11000){ 
+        if (err.code == 11000){  
+            console.log("err 11000")
             res.redirect("auth/signIn");
         }
         else 
         { 
-            const errors = validationResult(req); 
+            const errors = validationResult(req);  
+            console.log(err, errors);
             if(!errors.isEmpty()){ 
                 res.redirect("auth/signUp");
             }

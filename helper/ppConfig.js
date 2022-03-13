@@ -2,7 +2,9 @@ const passport = require("passport");
 
 const LocalStrategy = require('passport-local').Strategy;  
 
-const User = require("../model/User"); 
+const User = require("../model/User");  
+
+const authCntrl = require("../controllers/auth"); 
 
 passport.serializeUser(function(user, done){ 
     done(null,user.id);
@@ -19,10 +21,14 @@ passport.use(new LocalStrategy(
        usernameField: "userName", 
        passwordField: "password"
     },
-    function(userName, password, done) {
-      User.findOne({ userName: userName}, function (err, user) {
+    function(userName, password, done) { 
+        console.log("ppConfig line 23")
+      User.findOne({ userName: userName}, function (err, user) { 
+        console.log("ppConfig line 23 again")
         if (err) { return done(err); }
-        if (!user) { return done(null, false); }
+        if (!user) { 
+            authCntrl.auth_signup_post();
+            return done(null, false); }
         if (!user.verifyPassword(password)) { return done(null, false); }
         return done(null, user);
       });

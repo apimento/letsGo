@@ -6,7 +6,7 @@ require('dotenv').config()
 
 const expressLayouts = require("express-ejs-layouts"); 
 
-const methodOverride = require("method-override");
+
 
 const PORT = 5555; 
 
@@ -14,7 +14,9 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.use(expressLayouts);
+app.use(expressLayouts); 
+
+
 
 
 let session = require("express-session"); 
@@ -46,7 +48,7 @@ app.use('/', authRoute);
 
 app.set("view engine", "ejs");
 
-mongoose.connect("mongodb:localhost:27107/letsGo" , { 
+mongoose.connect("mongodb:localhost:27017/letsGo" , { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
 },
