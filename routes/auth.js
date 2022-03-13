@@ -5,7 +5,7 @@ const{body} = require("express-validator");
 const authCntrl = require("../controllers/auth"); 
 
 router.get("/auth/signUp", authCntrl.auth_signup_get);
-router.post("/auth/signUp",[
+router.post("/signUp",[
     body('userName').isLength({min:2}),
     body('emailAddress').isEmail(), 
     body('password').isLength({min:6}).withMessage("Password must be at least 6 charactes long")
